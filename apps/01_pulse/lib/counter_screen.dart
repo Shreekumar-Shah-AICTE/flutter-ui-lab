@@ -68,7 +68,6 @@ class _CounterScreenState extends State<CounterScreen>
         child: Column(
           children: [
             const SizedBox(height: 48),
-            // Header
             Text(
               'PULSE',
               style: GoogleFonts.jetBrainsMono(
@@ -88,15 +87,10 @@ class _CounterScreenState extends State<CounterScreen>
               ),
             ).animate().fadeIn(duration: 600.ms, delay: 100.ms),
             const Spacer(),
-            // Neumorphic dial
-            Center(
-              child: _buildDial(progress),
-            ),
+            Center(child: _buildDial(progress)),
             const Spacer(),
-            // Controls
             _buildControls(),
             const SizedBox(height: 48),
-            // Reset
             GestureDetector(
               onLongPress: _reset,
               child: Text(
@@ -121,13 +115,8 @@ class _CounterScreenState extends State<CounterScreen>
       animation: _pulseController,
       builder: (context, child) {
         final scale = 1.0 +
-            0.05 *
-                Curves.elasticOut
-                    .transform(_pulseController.value);
-        return Transform.scale(
-          scale: scale,
-          child: child,
-        );
+            0.05 * Curves.elasticOut.transform(_pulseController.value);
+        return Transform.scale(scale: scale, child: child);
       },
       child: Container(
         width: 240,
@@ -140,13 +129,12 @@ class _CounterScreenState extends State<CounterScreen>
         child: Stack(
           alignment: Alignment.center,
           children: [
-            // Progress ring
             SizedBox(
               width: 220,
               height: 220,
               child: AnimatedBuilder(
                 animation: _ringController,
-                builder: (context, child) {
+                builder: (context, _) {
                   return CustomPaint(
                     painter: _ProgressRingPainter(
                       progress: progress,
@@ -157,7 +145,6 @@ class _CounterScreenState extends State<CounterScreen>
                 },
               ),
             ),
-            // Counter number
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -166,10 +153,7 @@ class _CounterScreenState extends State<CounterScreen>
                   transitionBuilder: (child, animation) {
                     return ScaleTransition(
                       scale: animation,
-                      child: FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      ),
+                      child: FadeTransition(opacity: animation, child: child),
                     );
                   },
                   child: Text(
@@ -264,8 +248,9 @@ class _NeumorphicButtonState extends State<_NeumorphicButton> {
               ? AppColors.accent
               : AppColors.surface,
           shape: BoxShape.circle,
-          boxShadow:
-              _isPressed ? AppTokens.neumorphicPressed : AppTokens.neumorphicLight,
+          boxShadow: _isPressed
+              ? AppTokens.neumorphicPressed
+              : AppTokens.neumorphicLight,
         ),
         child: AnimatedScale(
           scale: _isPressed ? 0.92 : 1.0,
@@ -299,7 +284,6 @@ class _ProgressRingPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = (size.width - strokeWidth) / 2;
 
-    // Background track
     final bgPaint = Paint()
       ..color = color.withOpacity(0.08)
       ..strokeWidth = strokeWidth
@@ -307,7 +291,6 @@ class _ProgressRingPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
     canvas.drawCircle(center, radius, bgPaint);
 
-    // Progress arc
     if (progress > 0) {
       final fgPaint = Paint()
         ..color = color
@@ -328,21 +311,4 @@ class _ProgressRingPainter extends CustomPainter {
   bool shouldRepaint(covariant _ProgressRingPainter oldDelegate) {
     return oldDelegate.progress != progress;
   }
-}
-
-class AnimatedBuilder extends AnimatedWidget {
-  final Widget Function(BuildContext, Widget?) builder;
-  final Widget? child;
-
-  const AnimatedBuilder({
-    super.key,
-    required super.listenable,
-    required this.builder,
-    this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) => builder(context, child);
-
-  Animation<double> get animation => listenable as Animation<double>;
 }
