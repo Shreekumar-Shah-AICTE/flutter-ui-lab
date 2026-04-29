@@ -11,18 +11,29 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app:
-          - 01_pulse
-          - 02_gateway
-          - 03_calc_noir
-          - 04_atlas
-          - 05_enroll
-          - 06_catalog
-          - 07_momentum
-          - 08_vault
-          - 09_storefront
-          - 10_dispatch
-          - 11_archive
+        include:
+          - app: 01_pulse
+            name: pulse
+          - app: 02_gateway
+            name: gateway
+          - app: 03_calc_noir
+            name: calc_noir
+          - app: 04_atlas
+            name: atlas
+          - app: 05_enroll
+            name: enroll
+          - app: 06_catalog
+            name: catalog
+          - app: 07_momentum
+            name: momentum
+          - app: 08_vault
+            name: vault
+          - app: 09_storefront
+            name: storefront
+          - app: 10_dispatch
+            name: dispatch
+          - app: 11_archive
+            name: archive
 
     steps:
       - name: Checkout code
@@ -43,11 +54,26 @@ jobs:
       - name: Check if app exists
         id: check
         run: |
-          if [ -d "apps/${{ matrix.app }}" ]; then
+          if [ -d "apps/${{ matrix.app }}" ] && [ -f "apps/${{ matrix.app }}/pubspec.yaml" ]; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Generate Flutter project scaffold
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          cd apps/${{ matrix.app }}
+          # Back up our custom files
+          cp pubspec.yaml pubspec.yaml.bak
+          cp -r lib lib_bak
+          # Generate full Flutter scaffold (android/, ios/, web/, test/)
+          flutter create --project-name ${{ matrix.name }} --org com.flutteruilab .
+          # Restore our custom files over the generated ones
+          cp pubspec.yaml.bak pubspec.yaml
+          rm -rf lib
+          cp -r lib_bak lib
+          rm -rf lib_bak pubspec.yaml.bak
 
       - name: Install design system dependencies
         if: steps.check.outputs.exists == 'true'
