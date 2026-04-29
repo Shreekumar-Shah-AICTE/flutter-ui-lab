@@ -5,6 +5,7 @@
   <p>
     <em>A unified design system powering premium mobile experiences — neumorphism, glassmorphism, fluid animations, and modern UX patterns.</em>
   </p>
+  <p><sub>Mobile Programming Practicals • Prof. Akash Padhiyar • School of Computing</sub></p>
 
   <br />
 
@@ -16,7 +17,7 @@
 
   <br /><br />
 
-  <a href="#-the-collection">Apps</a> •
+  <a href="#-the-11-practicals">Practicals</a> •
   <a href="#-design-system">Design System</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-architecture">Architecture</a> •
@@ -28,29 +29,29 @@
 
 ## 💡 What Is This?
 
-Not homework. A **design laboratory**.
+11 Flutter applications — each solving a different **mobile programming practical assignment** — unified under a single, obsessively crafted design system. Every app shares the same typography, color palette, spacing grid, animation presets, and component library. The result feels like opening 11 apps from the same premium software studio.
 
-11 Flutter applications — each solving a different mobile programming challenge — unified under a single, obsessively crafted design system. Every app shares the same typography, color palette, spacing grid, animation presets, and component library. The result feels like opening 11 apps from the same premium software studio.
-
-> *"We don't build pages; we build moments."*
+> *"Satisfy the academic requirements perfectly, but wrap them in ultra-premium, Apple-tier UI/UX."*
 
 <br />
 
-## 📱 The Collection
+## 📱 The 11 Practicals
 
-| # | App | Concept | Key Features |
-|:-:|:---:|:--------|:-------------|
-| 01 | **Pulse** | Neumorphic Counter | Spring animations, haptic feedback, progress ring |
-| 02 | **Gateway** | Glassmorphic Login | Frosted glass card, ambient orbs, biometric hint |
-| 03 | **Calc.Noir** | Dark Calculator | Teenage Engineering aesthetic, monospace display, text glow |
-| 04 | **Atlas** | Navigation Showcase | Hero transitions, morphing tab bar, custom app icon |
-| 05 | **Enroll** | Registration Wizard | 3-step form, real-time validation, confetti success |
-| 06 | **Catalog** | Magazine Feed | Staggered animations, shimmer loading, pull-to-refresh |
-| 07 | **Momentum** | Task Manager | Gesture-driven, swipe-to-dismiss, completion choreography |
-| 08 | **Vault** | Settings/Preferences | Animated dark mode toggle, persistent state |
-| 09 | **Storefront** | E-Commerce (API) | Product grid, cart, shimmer states, FakeStore API |
-| 10 | **Dispatch** | News Reader (API) | Category tabs, breaking news badge, GNews API |
-| 11 | **Archive** | Notes/Journal (SQLite) | CRUD operations, color labels, search filtering |
+| # | Folder | Academic Title | Codename | Key Features |
+|:-:|:------:|:---------------|:--------:|:-------------|
+| 01 | `01_pulse` | **Counter Application** | Pulse | Neumorphic dial, spring animations, haptic feedback, progress ring |
+| 02 | `02_gateway` | **Simple Login UI** | Gateway | Glassmorphic card, ambient orbs, BackdropFilter blur, biometric hint |
+| 03 | `03_calc_noir` | **Simple Calculator** | Calc.Noir | Dark synth aesthetic, monospace display, text glow, witty ÷0 |
+| 04 | `04_atlas` | **Navigation and App Icon** | Atlas | Hero transitions, morphing tab bar, custom adaptive launcher icon |
+| 05 | `05_enroll` | **Student Registration Form with Validation** | Enroll | 3-step wizard, real-time validation, confetti success animation |
+| 06 | `06_catalog` | **ListView Implementation** | Catalog | Magazine feed, staggered animations, shimmer loading, pull-to-refresh |
+| 07 | `07_momentum` | **To-Do Application** | Momentum | Gesture-driven, swipe-to-dismiss, completion choreography |
+| 08 | `08_vault` | **SharedPreferences Implementation** | Vault | Animated dark mode toggle, persistent settings, theme crossfade |
+| 09 | `09_storefront` | **E-Commerce App UI (Using API)** | Storefront | Product grid, cart, shimmer states, FakeStore API integration |
+| 10 | `10_dispatch` | **News Application (Using API)** | Dispatch | Category tabs, breaking news badge, GNews API, pull-to-refresh |
+| 11 | `11_archive` | **CRUD Operations using SQLite Database** | Archive | Color-coded notes, masonry grid, search, sqflite CRUD |
+
+> 📌 **Each app folder contains its own `README.md`** with the full academic title, features, and implementation details.
 
 <br />
 
@@ -95,28 +96,28 @@ All 11 apps are powered by a shared `design_system` package:
 ```mermaid
 graph TB
     subgraph "Shared Foundation"
-        DS[design_system] --> Colors[AppColors]
-        DS --> Theme[AppTheme]
-        DS --> Tokens[AppTokens]
-        DS --> Anim[AppAnimations]
+        DS["design_system"] --> Colors["AppColors"]
+        DS --> Theme["AppTheme"]
+        DS --> Tokens["AppTokens"]
+        DS --> Anim["AppAnimations"]
     end
 
     subgraph "11 Applications"
-        A01[01 Pulse] --> DS
-        A02[02 Gateway] --> DS
-        A03[03 Calc.Noir] --> DS
-        A04[04 Atlas] --> DS
-        A05[05 Enroll] --> DS
-        A06[06 Catalog] --> DS
-        A07[07 Momentum] --> DS
-        A08[08 Vault] --> DS
-        A09[09 Storefront] --> DS
-        A10[10 Dispatch] --> DS
-        A11[11 Archive] --> DS
+        A01["01 Pulse — Counter"] --> DS
+        A02["02 Gateway — Login UI"] --> DS
+        A03["03 Calc.Noir — Calculator"] --> DS
+        A04["04 Atlas — Navigation"] --> DS
+        A05["05 Enroll — Registration"] --> DS
+        A06["06 Catalog — ListView"] --> DS
+        A07["07 Momentum — To-Do"] --> DS
+        A08["08 Vault — SharedPrefs"] --> DS
+        A09["09 Storefront — E-Commerce"] --> DS
+        A10["10 Dispatch — News"] --> DS
+        A11["11 Archive — SQLite CRUD"] --> DS
     end
 
     subgraph "CI/CD"
-        GH[GitHub Actions] --> APK[11 APK Artifacts]
+        GH["GitHub Actions"] --> APK["11 APK Artifacts"]
     end
 ```
 
@@ -127,27 +128,27 @@ graph TB
 ```
 flutter-ui-lab/
 ├── .github/workflows/
-│   └── build-all.yml          # Parallel APK builds for all 11 apps
+│   └── build-all.yml              # Parallel APK builds for all 11 apps
 ├── packages/
-│   └── design_system/         # Shared colors, typography, tokens, animations
+│   └── design_system/             # Shared colors, typography, tokens, animations
 │       ├── lib/
 │       │   ├── theme.dart
 │       │   ├── tokens.dart
 │       │   └── animations.dart
 │       └── pubspec.yaml
 ├── apps/
-│   ├── 01_pulse/              # Counter App
-│   ├── 02_gateway/            # Login UI
-│   ├── 03_calc_noir/          # Calculator
-│   ├── 04_atlas/              # Navigation
-│   ├── 05_enroll/             # Registration Form
-│   ├── 06_catalog/            # ListView
-│   ├── 07_momentum/           # To-Do App
-│   ├── 08_vault/              # SharedPreferences
-│   ├── 09_storefront/         # E-Commerce API
-│   ├── 10_dispatch/           # News API
-│   └── 11_archive/            # SQLite CRUD
-├── melos.yaml                 # Monorepo orchestrator
+│   ├── 01_pulse/                  # Practical 1: Counter Application
+│   ├── 02_gateway/                # Practical 2: Simple Login UI
+│   ├── 03_calc_noir/              # Practical 3: Simple Calculator
+│   ├── 04_atlas/                  # Practical 4: Navigation and App Icon
+│   ├── 05_enroll/                 # Practical 5: Student Registration Form
+│   ├── 06_catalog/                # Practical 6: ListView Implementation
+│   ├── 07_momentum/               # Practical 7: To-Do Application
+│   ├── 08_vault/                  # Practical 8: SharedPreferences
+│   ├── 09_storefront/             # Practical 9: E-Commerce App UI (API)
+│   ├── 10_dispatch/               # Practical 10: News Application (API)
+│   └── 11_archive/                # Practical 11: SQLite CRUD Operations
+├── melos.yaml                     # Monorepo orchestrator
 └── README.md
 ```
 
@@ -167,7 +168,7 @@ flutter-ui-lab/
 git clone https://github.com/Shreekumar-Shah-AICTE/flutter-ui-lab.git
 cd flutter-ui-lab
 
-# Navigate to any app
+# Navigate to any app (e.g., Counter Application)
 cd apps/01_pulse
 
 # Install dependencies
