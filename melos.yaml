@@ -1,0 +1,20 @@
+name: flutter_ui_lab
+
+packages:
+  - apps/**
+  - packages/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    run: melos exec -- flutter analyze
+    description: Run flutter analyze in all packages
+  format:
+    run: melos exec -- dart format .
+    description: Format all packages
+  clean:
+    run: melos exec -- flutter clean
+    description: Clean all packages
