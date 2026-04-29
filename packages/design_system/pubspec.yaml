@@ -1,0 +1,17 @@
+name: design_system
+description: Unified design system for Flutter UI Lab — shared colors, typography, spacing, animations, and reusable components.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.2.0
+
+flutter:
+  uses-material-design: true
